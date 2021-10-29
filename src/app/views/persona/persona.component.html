@@ -1,0 +1,100 @@
+<div>
+    <mat-form-field appearance="fill">
+        <input matInput (keyup)="filtrar($any($event.target).value)" placeholder="buscar Persona">
+    </mat-form-field>
+</div>
+
+
+
+
+<div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="idPersona">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number">
+                Codigo
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.idPersona}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="nombres">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">
+                Nombres
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.nombres}} </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="apellidos">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by weight">
+                Apellidos
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.apellidos}} </td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="edad">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by symbol">
+                Edad
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.edad}} </td>
+        </ng-container>
+
+           <!-- Symbol Column -->
+      <ng-container matColumnDef="sexo">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by symbol">
+            Sexo
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.sexo}} </td>
+    </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="fecha_de_Nacimiento">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by symbol">
+            Fecha De Nacimiento AÑO/MES/DIA
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.fecha_de_Nacimiento}} </td>
+    </ng-container>
+
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="pais">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by symbol">
+            Pais
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.pais.nombre}} </td>
+    </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="editar-eliminar">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by symbol">
+                Editar-Eliminar
+            </th>
+            <td mat-cell *matCellDef="let row">
+                <button mat-raised-button color="primary" (click)="openModal(row)">
+          <span class="material-icons">
+            edit_note
+          </span>
+        </button> &nbsp;
+                <button mat-raised-button color="accent" (click)="onDelete(row.idPersona)">
+          <span class="material-icons">
+            delete
+            </span>
+        </button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </table>
+
+    <mat-paginator [length]="100" [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]" [length]="cant" (page)="Paginator($event)"></mat-paginator>
+</div>
+<button mat-raised-button color="warn" (click)="openModal()" style="float: right; margin-right: 328px; margin-top: 20px;">
+  <span class="material-icons">
+    add_circle
+    </span>
+</button>
